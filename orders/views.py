@@ -17,3 +17,7 @@ def order_create(request):
     else:
         form = OrderForm()
     return render(request, 'orders/order_form.html', {'form': form})
+
+def report_view(request):
+    orders = Order.objects.select_related('product').all()
+    return render(request, 'orders/report.html', {'orders': orders})
